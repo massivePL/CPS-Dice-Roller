@@ -13,6 +13,7 @@
 		E67A10C729738A5C00D8F525 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E67A10C529738A5C00D8F525 /* Main.storyboard */; };
 		E67A10C929738A5D00D8F525 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E67A10C829738A5D00D8F525 /* Assets.xcassets */; };
 		E67A10CC29738A5D00D8F525 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E67A10CA29738A5D00D8F525 /* LaunchScreen.storyboard */; };
+		E689FEC229739DD6009F8CD2 /* diceSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E689FEC129739DD6009F8CD2 /* diceSound.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E67A10C829738A5D00D8F525 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E67A10CB29738A5D00D8F525 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E67A10CD29738A5D00D8F525 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E689FEC129739DD6009F8CD2 /* diceSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = diceSound.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		E67A10BE29738A5C00D8F525 /* CPS Dice Roller */ = {
 			isa = PBXGroup;
 			children = (
+				E689FEC029739DA5009F8CD2 /* sound */,
 				E67A10BF29738A5C00D8F525 /* AppDelegate.swift */,
 				E67A10C129738A5C00D8F525 /* SceneDelegate.swift */,
 				E67A10C329738A5C00D8F525 /* ViewController.swift */,
@@ -65,6 +68,14 @@
 				E67A10CD29738A5D00D8F525 /* Info.plist */,
 			);
 			path = "CPS Dice Roller";
+			sourceTree = "<group>";
+		};
+		E689FEC029739DA5009F8CD2 /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				E689FEC129739DD6009F8CD2 /* diceSound.mp3 */,
+			);
+			path = sound;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E67A10CC29738A5D00D8F525 /* LaunchScreen.storyboard in Resources */,
+				E689FEC229739DD6009F8CD2 /* diceSound.mp3 in Resources */,
 				E67A10C929738A5D00D8F525 /* Assets.xcassets in Resources */,
 				E67A10C729738A5C00D8F525 /* Main.storyboard in Resources */,
 			);
@@ -302,9 +314,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "software.copy-paste.CPS-Dice-Roller";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -330,9 +345,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "software.copy-paste.CPS-Dice-Roller";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
