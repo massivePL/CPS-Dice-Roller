@@ -1,60 +1,60 @@
-//
-//  ViewController.swift
-//  Dicee-iOS13
-//
-//  Created by Angela Yu on 11/06/2019.
-//  Copyright © 2019 London App Brewery. All rights reserved.
-//
-
 import UIKit
-import AVKit
+import AVFoundation
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var diceImageView1: UIImageView!
     @IBOutlet weak var diceImageView2: UIImageView!
     
+    var player: AVAudioPlayer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    class Soundmanager {
-        
-        static let instance = Soundmanager()
-        
-        var player: AVAudioPlayer?
-        
-        func playSound() {
-            guard let url = Bundle.main.url(forResource: "diceSound", withExtension: ".mp3") else {return}
-            
-            do {
-                player = try AVAudioPlayer(contentsOf: url)
-                player?.play()
+
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+            if motion == .motionShake {
                 
-            } catch let error {
-                print(error.localizedDescription)
+                playSound()
+                rollDice(dice: 0, vibStyle: .heavy)
+                rollDice(dice: 1)
             }
-                    
         }
+    
+    @IBAction func logoTouched(_ sender: UIButton) {
+        
+        UIApplication.shared.open(URL(string: "https://copy-paste.software")!)
+    }
+    
+    @IBAction func diceTouched(_ sender: UIButton) {
+        
+        playSound()
+        let diceNumber = Int(sender.accessibilityLabel!) ?? 0
+        rollDice(dice: diceNumber, vibStyle: .medium)
         
     }
     
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-            if motion == .motionShake {
-                rollDice()
-            }
+    func rollDice(dice: Int, vibStyle: UIImpactFeedbackGenerator.FeedbackStyle? = nil) {
+        
+        if vibStyle != nil {
+            
+            UIImpactFeedbackGenerator(style: vibStyle!).impactOccurred()
+            
         }
-    
-    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-            if motion == .motionShake {
-                Soundmanager.instance.playSound()
-            }
-        }
-    
-    func rollDice() {
+        
         let diceArray = [ UIImage(imageLiteralResourceName: "DiceOne"), UIImage(imageLiteralResourceName: "DiceTwo"), UIImage(imageLiteralResourceName: "DiceThree"), UIImage(imageLiteralResourceName: "DiceFour"), UIImage(imageLiteralResourceName: "DiceFive"), UIImage(imageLiteralResourceName: "DiceSix") ]
+        
+        let diceNumber = [diceImageView1, diceImageView2]
        
-        diceImageView1.image = diceArray.randomElement()
-        diceImageView2.image = diceArray.randomElement()
+        diceNumber[dice]!.image = diceArray.randomElement()
+        
+    }
+    
+    func playSound () {
+        
+                let url = Bundle.main.url(forResource: "diceSound", withExtension: "mp3")
+                player = try! AVAudioPlayer(contentsOf: url!)
+                player.play()
+              
     }
 }
