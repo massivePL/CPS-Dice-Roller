@@ -10,28 +10,36 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let url = Bundle.main.url(forResource: "diceSound", withExtension: "mp3")
+        player = try! AVAudioPlayer(contentsOf: url!)
     }
 
-    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
             if motion == .motionShake {
                 
-                playSound()
-                rollDice(dice: 0, vibStyle: .heavy)
-                rollDice(dice: 1)
+                if !player.isPlaying {
+                    playSound()
+                    rollDice(dice: 0, vibStyle: .heavy)
+                    rollDice(dice: 1)
+                }
             }
         }
     
     @IBAction func logoTouched(_ sender: UIButton) {
         
         UIApplication.shared.open(URL(string: "https://copy-paste.software")!)
+        
     }
     
     @IBAction func diceTouched(_ sender: UIButton) {
         
-        playSound()
-        let diceNumber = Int(sender.accessibilityLabel!) ?? 0
-        rollDice(dice: diceNumber, vibStyle: .medium)
-        
+        if !player.isPlaying {
+            
+            playSound()
+            let diceNumber = Int(sender.accessibilityLabel!) ?? 0
+            rollDice(dice: diceNumber, vibStyle: .medium)
+            
+        }
     }
     
     func rollDice(dice: Int, vibStyle: UIImpactFeedbackGenerator.FeedbackStyle? = nil) {
@@ -52,9 +60,7 @@ class ViewController: UIViewController {
     
     func playSound () {
         
-                let url = Bundle.main.url(forResource: "diceSound", withExtension: "mp3")
-                player = try! AVAudioPlayer(contentsOf: url!)
                 player.play()
-              
+                
     }
 }
